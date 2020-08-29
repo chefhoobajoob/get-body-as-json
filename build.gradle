@@ -1,0 +1,47 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+plugins {
+    id 'java'
+}
+
+group 'org.github.chefhoobajoob'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def vertxVersion = "3.9.2"
+dependencies {
+    compile "io.vertx:vertx-core:$vertxVersion"
+    compile "io.vertx:vertx-web:$vertxVersion"
+    compile "io.vertx:vertx-web-client:$vertxVersion"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "io.vertx.core.Starter"
+        attributes "Main-Verticle": "org.github.chefhoobajoob.Main"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task getBodyAsJson(type: Exec) {
+    description 'Runs the service using getBodyAsJson'
+    group 'Vertx Reproducer'
+    dependsOn build
+
+    workingDir = '.'
+    commandLine 'java', '-jar', './build/libs/giant-numeric-payload-1.0-SNAPSHOT.jar', '-conf', './src/main/resources/get-body-as-json.json'
+}
+
+task getBodyAsString(type: Exec) {
+    description 'Runs the service using getBodyAsJson'
+    group 'Vertx Reproducer'
+    dependsOn build
+
+    workingDir = '.'
+    commandLine 'java', '-jar', './build/libs/giant-numeric-payload-1.0-SNAPSHOT.jar', '-conf', './src/main/resources/get-body-as-string.json'
+}
