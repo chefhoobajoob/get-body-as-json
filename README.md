@@ -31,8 +31,7 @@ Use `CTRL-C` to exit after seeing output similar to the following:
 >>> service: getting body as string
 >>> service: failed getting body: io.vertx.core.json.DecodeException: Failed to decode:Cannot deserialize instance of `java.util.LinkedHashMap<java.lang.Object,java.lang.Object>` out of VALUE_NUMBER_INT token at [Source: (StringReader); line: 1, column: 1]
 >>> client: received expected 400 response
->>> client: done issuing http requests
->>> service: done listening for http requests
+Aug 28, 2020 7:43:39 PM io.vertx.core.Starter
 INFO: Succeeded in deploying verticle
 ```
 
