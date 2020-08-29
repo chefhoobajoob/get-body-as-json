@@ -7,7 +7,7 @@ The `Service` verticle contains the vertx-web route and http server that will at
 
 The `Client` verticle creates a web client instant and issues the large POST body to the service, and fails to deploy if it fails to receive a response within 5 seconds, or if the response is not the expected `400`. Otherwise, it deploys successfully.
 
-The `Main` verticle attempts to deploy the `Service` verticle, then the `Client` verticle, and fails to deploy only if either the `Client` or `Service` verticle deploys.
+The `Main` verticle attempts to deploy the `Service` verticle, then the `Client` verticle, and fails to deploy only if either the `Client` or `Service` verticles fail to deploy.
 
 The POST body used by the `Client` verticle is loaded from the file: `./src/main/resources/all-nines.txt`
 
